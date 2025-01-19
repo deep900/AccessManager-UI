@@ -1,0 +1,42 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+.main {
+  font-size: 12px;
+}
+
+.headerClass {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-size: 14px;
+}
+
+.container {
+  font-family: "Rubik", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.login-form {
+  padding: 25px;
+  border-radius: 25px;
+  border: 1px solid gray;
+  height: 550px;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+}
+
+.center-align {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translate(50%, 50%);
+  transform: translate(-50%, 2%);
+}

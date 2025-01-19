@@ -1,0 +1,23 @@
+{
+  "currentVersion": "1.2",
+  "releaseDate": "2025-01-18",
+  "versionChangesList": [
+    "Changed the specifications for Access governance 1.1"
+  ],
+  "versionList": [
+    {
+      "versionNumber": "1.0",
+      "versionChanges": [
+        "Created the basic react app with routing and navigation"
+      ],
+      "releaseDate": "2025-01-02"
+    },
+    {
+      "versionNumber": "1.1",
+      "versionChanges": [
+        "Changed the data from useState to useContext and setup the Auth Context."
+      ],
+      "releaseDate": "2025-01-10"
+    }
+  ]
+}

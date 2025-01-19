@@ -1,0 +1,7 @@
+.hideNavigation {
+  display: none;
+}
+
+.showNavigation {
+  display: block;
+}
