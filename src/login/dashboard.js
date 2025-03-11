@@ -3,30 +3,41 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { apiClient } from "../service/API/HttpService";
 import * as ReactBootStrap from "react-bootstrap";
+import IsTokenValid from "../components/IsTokenValid";
+import { useNavigate } from "react-router-dom";
 
 const URL = "/v1/api/admin/getUserDetails";
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const { user, authToken, setUserInfo, userInfo } = useContext(AuthContext);
-
+  const appData = ["Welcome", "Hello", "World"];
+  const isTokenAlive = IsTokenValid();
+  const navigate = useNavigate();
+  /* Loads the application dashboard data from the remote API. */
   useEffect(() => {
     try {
-      const finalUrl = URL + "?userEmail=" + user;
-      console.log("Loading the user information: " + finalUrl);
-      console.log("Printing the auth token:" + authToken);
-      document.title = "TaskManager - Dashboard";
-      makeGetCall(finalUrl, {
-        headers: {
-          "Content-Type": "application/json",
-          withCredentials: true,
-          Authorization: "Bearer " + authToken,
-        },
-      });
+      if (isTokenAlive) {
+        const finalUrl =
+          URL + "?userEmail=" + user + "&applicationName=TaskManager";
+        console.log("Loading the user information: " + finalUrl);
+        console.log("Printing the auth token:" + authToken);
+        document.title = "TaskManager - Dashboard";
+        makeGetCall(finalUrl, {
+          headers: {
+            "Content-Type": "application/json",
+            withCredentials: true,
+            Authorization: "Bearer " + authToken,
+          },
+        });
+      } else {
+        navigate("/login");
+      }
     } catch (err) {
       console.log(err);
     }
   }, [user, authToken]);
 
+  /* Generic function to make a GET method call. */
   const makeGetCall = async (URL, headers) => {
     try {
       const response = await apiClient.get(URL, headers);

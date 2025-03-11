@@ -6,14 +6,17 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "@popperjs/core/dist/cjs/popper.js";
 
 import AuthContext from "../context/AuthContext";
+import DynamicMenu from "../login/DynamicMenu";
 
 import "./header.css";
+import DynMenu from "../DynMenu";
 const Header = () => {
   const { loggedIn, userInfo } = useContext(AuthContext);
   const [sVersion, setsVersion] = useState("1.0");
-
+  const [accessDetailsArr, setAccessDetailsArr] = useState(null);
   useEffect(() => {
-    console.log("Printing the user info-header:" + userInfo);
+    console.log("Printing the user info header:" + JSON.stringify(userInfo));
+    setAccessDetailsArr(userInfo?.accessDetails);
   }, [userInfo]);
 
   useEffect(() => {
@@ -41,7 +44,7 @@ const Header = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
+              <a class="nav-link active" aria-current="page" href="/">
                 Home
               </a>
             </li>
@@ -53,15 +56,8 @@ const Header = () => {
                   Login{" "}
                 </a>{" "}
               </li>
-            ) : (
-              <li className="nav-item">
-                {" "}
-                <a className="nav-link" href="/logout">
-                  {" "}
-                  Logout{" "}
-                </a>{" "}
-              </li>
-            )}
+            ) : null}
+            <DynMenu data={userInfo?.accessDetails} />
             <li
               className={
                 "nav-item dropdown float-md-right " +
@@ -75,8 +71,9 @@ const Header = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                {userInfo?.firstName}
+                {userInfo?.userEntity?.firstName}
               </a>
+
               <ul class="dropdown-menu">
                 <li>
                   <a class="dropdown-item" href="/logout">
@@ -85,16 +82,11 @@ const Header = () => {
                 </li>
                 <li>
                   <a class="dropdown-item" href="#">
-                    Another action
+                    View Profile
                   </a>
                 </li>
                 <li>
                   <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Something else here
-                  </a>
                 </li>
               </ul>
             </li>

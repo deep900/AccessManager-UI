@@ -40,3 +40,10 @@
   -ms-transform: translate(50%, 50%);
   transform: translate(-50%, 2%);
 }
+
+.modal-dialog {
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  border-radius: 25px;
+  border: 1px solid gray;
+}
