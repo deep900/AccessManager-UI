@@ -36,6 +36,7 @@ const ManageOrg = () => {
   };
 
   const editOrgBody = (val) => {
+    console.log("Printing the object id:" + val);
     const info = [];
     const xVal = searchRecordsById(val);
     console.log("Printing the val:" + JSON.stringify(xVal));
@@ -133,7 +134,7 @@ const ManageOrg = () => {
   };
   return (
     <div>
-      <div class="alert alert-success mt-1" role="alert">
+      <div class="alert alert-success" role="alert">
         <h4>Manage organization</h4>
       </div>
       <SearchBar
@@ -204,6 +205,7 @@ const ManageOrg = () => {
         show={showModal}
         handleClose={handleCloseModal}
         data={editInfo}
+        setShowModal={setShowModal}
       />
     </div>
   );

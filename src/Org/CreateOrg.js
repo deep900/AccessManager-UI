@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import MakePostCall from "../service/API/MakePostCall";
 import AuthContext from "../context/AuthContext";
-import ModalDialog from "../dialog/ModifyOrgModalDialog";
 import { useNavigate } from "react-router-dom";
 import IsTokenValid from "../components/IsTokenValid";
 
@@ -34,6 +33,14 @@ const CreateOrg = () => {
     makeHttpPostCall();
   };
 
+  const getRequestBody = () => {
+    return {
+      orgName: orgName,
+      orgDescription: orgDescription,
+      country: country,
+    };
+  };
+
   const getHeader = () => {
     console.log("Printing the auth token" + authToken);
     return {
@@ -42,14 +49,6 @@ const CreateOrg = () => {
         Authorization: "Bearer " + authToken,
       },
       withCredentials: true,
-    };
-  };
-
-  const getRequestBody = () => {
-    return {
-      orgName: orgName,
-      orgDescription: orgDescription,
-      country: country,
     };
   };
 
@@ -151,24 +150,27 @@ const CreateOrg = () => {
           </div>
         </div>
         <button
-          type="submit"
-          className="btn btn-primary ms-10"
-          onClick={handleCreate}
-        >
-          Create
-        </button>
-        <button
-          type="button ms-5"
-          className="btn btn-warning"
+          type="button"
+          className="btn btn-warning ml-2"
           onClick={handleCancel}
         >
           Cancel
         </button>
+        <button
+          type="submit"
+          className="btn btn-primary ml-10"
+          onClick={handleCreate}
+        >
+          Create
+        </button>
       </form>
-      <ModalDialog
-        content={popupMessage}
-        creationSuccess={creationSuccess}
-      ></ModalDialog>
+      <hr />
+      <span
+        class={popupMessage === "" ? "d-none" : "alert alert-primary mt-10"}
+        role="alert"
+      >
+        {popupMessage}
+      </span>
     </>
   );
 };

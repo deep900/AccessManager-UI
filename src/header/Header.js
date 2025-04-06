@@ -6,8 +6,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "@popperjs/core/dist/cjs/popper.js";
 
 import AuthContext from "../context/AuthContext";
-import DynamicMenu from "../login/DynamicMenu";
-
 import "./header.css";
 import DynMenu from "../DynMenu";
 const Header = () => {
@@ -21,17 +19,17 @@ const Header = () => {
 
   useEffect(() => {
     console.log("Loading the software version");
-    setsVersion("1.1");
+    setsVersion("1.0");
   }, []);
 
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
           Access Governance {sVersion}
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -39,12 +37,12 @@ const Header = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="/">
                 Home
               </a>
             </li>
@@ -56,40 +54,41 @@ const Header = () => {
                   Login{" "}
                 </a>{" "}
               </li>
-            ) : null}
-            <DynMenu data={userInfo?.accessDetails} />
-            <li
-              className={
-                "nav-item dropdown float-md-right " +
-                (userInfo ? "showNavigation" : "hideNavigation")
-              }
-            >
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {userInfo?.userEntity?.firstName}
-              </a>
+            ) : (
+              <>
+                <DynMenu data={userInfo?.accessDetailsMap} />
 
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="/logout">
-                    Logout
+                <li
+                  className={
+                    "nav-item dropdown d-flex " +
+                    (userInfo ? "showNavigation" : "hideNavigation")
+                  }
+                >
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {userInfo?.userEntity?.firstName}
                   </a>
+
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="/logout">
+                        Logout
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        View Profile
+                      </a>
+                    </li>
+                  </ul>
                 </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    View Profile
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-              </ul>
-            </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

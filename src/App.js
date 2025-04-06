@@ -15,6 +15,7 @@ import pageNotFound from "./pageNotFound";
 import React from "react";
 import Header from "./header/Header.js";
 import ManageOrg from "./Org/ManageOrg.js";
+import CreateBranch from "./branch/CreateBranch.js";
 function App() {
   return (
     <React.StrictMode>
@@ -29,6 +30,7 @@ function App() {
               <Route path="/dashboard" Component={Dashboard} />
               <Route path="/createOrg" Component={CreateOrg} />
               <Route path="/modifyOrg" Component={ManageOrg} />
+              <Route path="/createBranch" Component={CreateBranch} />
               <Route path="*" Component={pageNotFound} />
             </Routes>
           </BrowserRouter>

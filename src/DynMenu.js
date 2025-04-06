@@ -1,51 +1,44 @@
 import React from "react";
-import { useState } from "react";
-
 const DynMenu = (data) => {
-  var arr = [];
   const mainMenu = [];
-
+  const subMenu = [];
+  var count = 0;
   Object.keys(data).forEach((key) => {
-    arr.push(data[key]);
+    var obj = data[key];
+    if (obj != null) {
+      Object.keys(obj).forEach((menu) => {
+        mainMenu.push(menu);
+        subMenu.push(obj[menu]);
+      });
+    }
   });
-  mainMenu.push(arr?.[0]?.[0]);
   return (
     <>
-      <li
-        className={
-          "nav-item dropdown float-md-right " +
-          (data ? "showNavigation" : "hideNavigation")
-        }
-      >
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          {mainMenu?.map((mMenu) => mMenu?.name)}
-        </a>
-        <ul class="dropdown-menu">
-          {arr[0]?.map((info) => (
-            <li>
-              {info.frontendUrl === "" ? (
-                ""
-              ) : (
-                <>
-                  <a class="dropdown-item" href={info?.frontendUrl}>
-                    {" "}
-                    {info?.name}
-                  </a>
-                  <hr class="dropdown-divider" />
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
-      </li>
+      {mainMenu.map((val) => (
+        <li className={"nav-item dropdown ml-3 float-md-right showNavigation"}>
+          <a
+            className="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {val}
+          </a>
+          <ul class="dropdown-menu">
+            {subMenu[count]?.map((menuInfo) => (
+              <li>
+                <a class="dropdown-item" href={menuInfo.frontendUrl}>
+                  {" "}
+                  {menuInfo.name}{" "}
+                </a>
+              </li>
+            ))}
+          </ul>
+          {(count = count + 1) > 0 ? "" : ""}
+        </li>
+      ))}
     </>
   );
 };
-
 export default DynMenu;
